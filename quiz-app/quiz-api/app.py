@@ -24,7 +24,7 @@ def GetQuizInfo():
 def login():
     payload = request.get_json()
     password = payload.get('password')
-    if password == 'test':
+    if password == 'flask123':
         token = jwt_utils.build_token()
         return jsonify({'token': token})
     else:
