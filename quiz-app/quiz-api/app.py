@@ -8,8 +8,7 @@ CORS(app)
 
 @app.route('/')
 def hello_world():
-    x = 'world'
-    return f"Hello, {x}"
+    return "Hello, world"
 
 @app.route('/quiz-info', methods=['GET'])
 def GetQuizInfo():
@@ -51,6 +50,7 @@ def get_question_by_position():
         return jsonify(question.to_dict()), 200
     else:
         return jsonify({'message': 'Question not found'}), 404
+
 
 if __name__ == "__main__":
     app.run(port=5001)

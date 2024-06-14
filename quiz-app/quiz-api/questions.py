@@ -37,7 +37,7 @@ def add_question():
         return {'message': str(e)}, 500
     finally:
         conn.close()
-    return {'message': 'Question added successfully'}, 200
+    return {'id': question_id, 'message': 'Question added successfully'}, 200
 
 def fetch_question_by_position(position: int):
     conn = get_db()
