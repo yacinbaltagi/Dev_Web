@@ -18,6 +18,11 @@ const routes = [
     path: '/questions',
     name: 'QuestionsManager',
     component: QuestionsManager
+  },
+  {
+    path: '/login',  // Ajouter une route pour la page de login
+    name: 'LoginPage',
+    component: { template: '<div>Login Page</div>' }
   }
 ]
 
