@@ -2,14 +2,42 @@
   <div class="home">
     <div class="quiz-container">
       <h1 class="quiz-title">Welcome to the Quiz!</h1>
-      <button class="start-quiz-button">Démarrer le quiz !</button>
+      <p>Top Scores</p>
+      <button class="start-quiz-button" @click="goToEnterName">Démarrer le quiz !</button>
+      <div v-if="quizInfo">
+        <p>Number of Questions: {{ quizInfo.size }}</p>
+        <p>Top Scores: {{ quizInfo.scores.join(', ') }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import QuizApiService from '../services/QuizApiService';
+
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+  data() {
+    return {
+      quizInfo: null
+    };
+  },
+  methods: {
+    async fetchQuizInfo() {
+      try {
+        const { data } = await QuizApiService.getQuizInfo();
+        this.quizInfo = data;
+      } catch (error) {
+        console.error('Error fetching quiz info:', error);
+      }
+    },
+    goToEnterName() {
+      this.$router.push({ name: 'EnterName' });
+    }
+  },
+  created() {
+    this.fetchQuizInfo();
+  }
 }
 </script>
 

@@ -35,22 +35,9 @@ def add_question():
     return jsonify(response), status
 
 @app.route('/questions', methods=['GET'])
-def get_question_by_position():
-    position = request.args.get('position')
-    if not position:
-        return jsonify({'message': 'Position parameter is missing'}), 400
-
-    try:
-        position = int(position)
-    except ValueError:
-        return jsonify({'message': 'Position parameter must be an integer'}), 400
-
-    question = questions.fetch_question_by_position(position)
-    if question:
-        return jsonify(question.to_dict()), 200
-    else:
-        return jsonify({'message': 'Question not found'}), 404
-
+def get_all_questions():
+    response, status = questions.get_all_questions()
+    return response, status
 
 if __name__ == "__main__":
     app.run(port=5001)

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import NewQuizPage from '../views/NewQuizPage.vue';
 import QuestionsManager from '../views/QuestionsManager.vue';
+import EnterName from '../views/EnterName.vue';
 
 const routes = [
   {
@@ -20,9 +21,9 @@ const routes = [
     component: QuestionsManager
   },
   {
-    path: '/login',  // Ajouter une route pour la page de login
-    name: 'LoginPage',
-    component: { template: '<div>Login Page</div>' }
+    path: '/enter-name',
+    name: 'EnterName',
+    component: EnterName
   }
 ]
 

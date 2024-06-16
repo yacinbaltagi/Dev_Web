@@ -25,12 +25,19 @@ export default {
       })
       .catch((error) => {
         console.error(error);
+        throw error;
       });
   },
   getQuizInfo() {
     return this.call("get", "quiz-info");
   },
-  getQuestion(position) {
-    // not implemented
+  getQuestions() {
+    return this.call("get", "questions");
+  },
+  addQuestion(questionData) {
+    return this.call("post", "questions", questionData);
+  },
+  login(password) {
+    return this.call("post", "login", { password });
   }
 };
