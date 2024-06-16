@@ -25,7 +25,7 @@ export default {
       })
       .catch((error) => {
         console.error(error);
-        throw error;
+        return { status: error.response.status, data: error.response.data };
       });
   },
   getQuizInfo() {
@@ -34,8 +34,20 @@ export default {
   getQuestions() {
     return this.call("get", "questions");
   },
+  getQuestion(id) {
+    return this.call("get", `questions/${id}`);
+  },
   addQuestion(questionData) {
-    return this.call("post", "questions", questionData);
+    const token = localStorage.getItem('authToken');
+    return this.call("post", "questions", questionData, token);
+  },
+  updateQuestion(id, questionData) {
+    const token = localStorage.getItem('authToken');
+    return this.call("put", `questions/${id}`, questionData, token);
+  },
+  deleteQuestion(id) {
+    const token = localStorage.getItem('authToken');
+    return this.call("delete", `questions/${id}`, null, token);
   },
   login(password) {
     return this.call("post", "login", { password });

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import questions  
+import questions
 import jwt_utils
 
 app = Flask(__name__)
@@ -37,7 +37,23 @@ def add_question():
 @app.route('/questions', methods=['GET'])
 def get_all_questions():
     response, status = questions.get_all_questions()
-    return response, status
+    return jsonify(response), status
+
+@app.route('/questions/<int:id>', methods=['GET'])
+def get_question(id):
+    response, status = questions.get_question(id)
+    return jsonify(response), status
+
+@app.route('/questions/<int:id>', methods=['PUT'])
+def update_question(id):
+    response, status = questions.update_question(id)
+    return jsonify(response), status
+
+@app.route('/questions/<int:id>', methods=['DELETE'])
+def delete_question(id):
+    response, status = questions.delete_question(id)
+    return jsonify(response), status
 
 if __name__ == "__main__":
     app.run(port=5001)
+    
